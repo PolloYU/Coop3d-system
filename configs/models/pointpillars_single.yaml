@@ -1,0 +1,26 @@
+# 项目侧单端 PointPillars 配置。外部路径按本机情况填写。
+backend: opencood
+task: single_agent_3d_detection
+
+paths:
+  opencood_root: external/OpenCOOD
+  model_dir: checkpoints/pointpillar
+  dataset_root: data/opv2v
+  python_executable: python
+
+model:
+  name: pointpillars
+  # 与当前官方 pointpillar_late_fusion/config.yaml 保持一致。
+  score_threshold: 0.20
+  point_cloud_range: [-70.4, -40.0, -3.0, 70.4, 40.0, 1.0]
+  voxel_size: [0.4, 0.4, 4.0]
+
+output:
+  coordinate_frame: ego_lidar
+  box_order: [x, y, z, length, width, height, yaw]
+
+# 第一阶段先用 OpenCOOD 官方 late inference 验证模型和数据链路。
+# 严格“仅使用本车点云”的评测将在数据适配器中限制每帧只保留 ego 节点。
+opencood:
+  fusion_method: late
+  save_npy: true

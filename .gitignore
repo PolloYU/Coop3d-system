@@ -203,6 +203,20 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Coop3D local datasets, checkpoints and generated experiment artifacts
+/data/
+/data_raw/
+/data_processed/
+/checkpoints/
+/outputs/
+configs/data/*.local.yaml
+*.pcd
+*.npy
+*.pth
+*.pt
+*.ckpt
+*.zip
+
 # Ruff stuff:
 .ruff_cache/
 
